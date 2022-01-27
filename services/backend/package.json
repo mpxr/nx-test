@@ -1,0 +1,25 @@
+{
+    "name": "@nx-test/backend",
+    "version": "0.0.0",
+    "type": "module",
+    "license": "MIT",
+    "scripts": {
+        "test": "node index.js"
+    },
+    "dependencies": {
+        "@nx-test/jokes": "*"
+    },
+    "nx": {
+        "targets": {
+            "test": {
+                "outputs": [],
+                "dependsOn": [
+                    {
+                        "target": "build",
+                        "projects": "dependencies"
+                    }
+                ]
+            }
+        }
+    }
+}

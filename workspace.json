@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "jokes": "packages/jokes",
+    "backend": "services/backend"
+  }
 }
