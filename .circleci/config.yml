@@ -3,6 +3,10 @@ orbs:
   nx: nrwl/nx@1.0.0
 jobs:
   main:
+    executor:
+      name: node/default
+      tag: 14.18.1
+      
     steps:
       - checkout
       - run: yarn install
