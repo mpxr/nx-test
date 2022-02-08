@@ -9,10 +9,19 @@ jobs:
       tag: 14.18.1  
     steps:
       - checkout
-      - run: npm install
+      - restore_cache:
+          keys:
+            - yarn-{{ checksum "yarn.lock" }}      
+      - run: yarn install
       - nx/set-shas
       - run: npx nx affected --base=$NX_BASE --target=build --parallel --max-parallel=3
       - run: npx nx affected --base=$NX_BASE --target=test --parallel --max-parallel=2
+      - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - packages/*/node_modules
+            - services/*/node_modules      
   
   main:
     executor:
