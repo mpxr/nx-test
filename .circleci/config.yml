@@ -21,9 +21,8 @@ jobs:
           key: yarn-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-            - packages/jokes/node_modules
-            - services/backend/node_modules
-            - services/frontend/node_modules
+            - packages/*/node_modules
+            - services/*/node_modules
 
 workflows:
   build:
