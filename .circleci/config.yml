@@ -3,6 +3,26 @@ orbs:
   node: circleci/node@5.0.0
   nx: nrwl/nx@1.1.3
 jobs:
+  pr:
+    executor:
+      name: node/default
+      tag: 14.18.1  
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-{{ checksum "yarn.lock" }}      
+      - run: yarn install
+      - nx/set-shas
+      - run: npx nx affected --base=$NX_BASE --target=build --parallel --max-parallel=3
+      - run: npx nx affected --base=$NX_BASE --target=test --parallel --max-parallel=2
+      - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - packages/*/node_modules
+            - services/*/node_modules      
+  
   main:
     executor:
       name: node/default
@@ -10,11 +30,29 @@ jobs:
       
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - yarn-{{ checksum "yarn.lock" }}
       - run: yarn install
       - nx/set-shas
       - run: npx nx affected --base=$NX_BASE --target=build --parallel --max-parallel=3
       - run: npx nx affected --base=$NX_BASE --target=test --parallel --max-parallel=2
+      - run: npx nx affected --base=$NX_BASE --target=deploy --parallel --max-parallel=2
+      - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - packages/*/node_modules
+            - services/*/node_modules
+
 workflows:
   build:
     jobs:
-      - main
+      - main:
+          filters:
+            branches:
+              only: main
+      - pr:
+          filters:
+            branches:
+              ignore: main
