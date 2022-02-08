@@ -10,10 +10,21 @@ jobs:
       
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - yarn-{{ checksum "yarn.lock" }}
       - run: yarn install
       - nx/set-shas
       - run: npx nx affected --base=$NX_BASE --target=build --parallel --max-parallel=3
       - run: npx nx affected --base=$NX_BASE --target=test --parallel --max-parallel=2
+      - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - services/packages/jokes/node_modules
+            - services/backend/node_modules
+            - services/frontend/node_modules
+
 workflows:
   build:
     jobs:
