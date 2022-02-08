@@ -4,6 +4,8 @@ export async function handler() {
 
     const { joke } = await getJoke();
 
+    console.log(joke);
+
     return {
         statusCode: 200,
         body: JSON.stringify(joke)
