@@ -6,7 +6,18 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "test": "node index.js"
+    "test": "node dist/index.js"
+  },
+  "nx": {
+    "test": {
+      "outputs": [],
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    }
   },
   "dependencies": {
     "isomorphic-fetch": "^3.0.0"

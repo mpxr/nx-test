@@ -1,4 +1,13 @@
 import { getJoke } from "@nx-test/jokes";
 
-const joke = await getJoke();
-console.log(joke);
+
+
+async function handler() {
+    const joke = await getJoke();
+    return {
+        statusCode: 200,
+        body: JSON.stringify(joke)
+    }
+}
+
+module.exports.handler = handler;

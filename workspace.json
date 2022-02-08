@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "jokes": "packages/jokes",
-    "backend": "services/backend"
+    "backend": "services/backend",
+    "frontend": "services/frontend"
   }
 }

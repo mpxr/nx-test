@@ -1,25 +1,28 @@
 {
-    "name": "@nx-test/backend",
-    "version": "0.0.0",
-    "type": "module",
-    "license": "MIT",
-    "scripts": {
-        "test": "node index.js"
-    },
-    "dependencies": {
-        "@nx-test/jokes": "*"
-    },
-    "nx": {
-        "targets": {
-            "test": {
-                "outputs": [],
-                "dependsOn": [
-                    {
-                        "target": "build",
-                        "projects": "dependencies"
-                    }
-                ]
-            }
+  "name": "@nx-test/backend",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "test": "echo 🐒 backend"
+  },
+  "dependencies": {
+    "@nx-test/jokes": "*"
+  },
+  "nx": {
+    "test": {
+      "outputs": [],
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
         }
+      ]
     }
+  },
+  "devDependencies": {
+    "serverless": "^3.1.1",
+    "serverless-esbuild": "^1.24.1"
+  }
 }

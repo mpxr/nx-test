@@ -1,0 +1,24 @@
+service: backend
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: eu-west-1
+
+plugins:
+  - serverless-esbuild
+
+custom:
+  esbuild:
+    packager: yarn
+    exclude:
+      - aws-sdk
+
+functions:
+  jokes:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /jokes
+          method: get
