@@ -49,10 +49,12 @@ workflows:
   build:
     jobs:
       - main:
+          context: aws
           filters:
             branches:
               only: main
       - pr:
+          context: aws
           filters:
             branches:
               ignore: main
