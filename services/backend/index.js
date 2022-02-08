@@ -1,6 +1,6 @@
 import { getJoke } from "@nx-test/jokes";
 
-async function handler() {
+export async function handler() {
 
     const { joke } = await getJoke();
 
@@ -9,5 +9,3 @@ async function handler() {
         body: JSON.stringify(joke)
     }
 }
-
-module.exports.handler = handler;

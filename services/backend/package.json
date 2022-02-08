@@ -19,6 +19,15 @@
           "projects": "dependencies"
         }
       ]
+    },
+    "deploy": {
+      "outputs": [],
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ]
     }
   },
   "devDependencies": {
