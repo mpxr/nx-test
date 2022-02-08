@@ -4,6 +4,7 @@ export async function handler() {
 
     const { joke } = await getJoke();
 
+    console.log('hi');
     console.log(joke);
 
     return {
