@@ -8,4 +8,8 @@ function getJoke() {
         .then((response) => response.json());        
 }
 
-export { getJoke }
+function setJoke(joke) {
+    console.log(joke);
+}
+
+export { getJoke, setJoke }
