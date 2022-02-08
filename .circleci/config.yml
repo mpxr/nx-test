@@ -1,11 +1,12 @@
 version: 2.1
 orbs:
+  node: circleci/node@5.0.0
   nx: nrwl/nx@1.0.0
 jobs:
   main:
     executor:
       name: node/default
-      tag: 14.18.1
+      tag: 16
       
     steps:
       - checkout
