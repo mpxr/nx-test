@@ -9,6 +9,7 @@ function getJoke() {
 }
 
 function setJoke(joke) {
+    
     console.log(joke);
 }
 
