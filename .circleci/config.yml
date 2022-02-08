@@ -6,7 +6,7 @@ jobs:
   main:
     executor:
       name: node/default
-      tag: 16
+      tag: '16'
       
     steps:
       - checkout
